@@ -45,24 +45,21 @@ def play_word_game(word_bank, max_turns=5):
         previous_guesses.append(guess)
 
         revealed_positions = []
-        remaining_letters = list(word_to_guess)  # Track unmatched letters in the word to guess
+        remaining_letters = list(word_to_guess)
 
-        # Check for correct letters in the correct positions
         for i in range(len(guess)):
             if guess[i] == word_to_guess[i]:
                 revealed_positions.append(guess[i])
-                remaining_letters[i] = None  # Mark this letter as matched
+                remaining_letters[i] = None 
             else:
                 revealed_positions.append("_")
 
-        # Check for misplaced letters
         for i in range(len(guess)):
             if guess[i] != word_to_guess[i] and guess[i] in remaining_letters:
                 if guess[i] not in misplaced_guesses:
                     misplaced_guesses.append(guess[i])
-                remaining_letters[remaining_letters.index(guess[i])] = None  # Mark as used
+                remaining_letters[remaining_letters.index(guess[i])] = None
 
-        # Update incorrect guesses
         for letter in guess:
             if letter not in word_to_guess and letter not in incorrect_guesses:
                 incorrect_guesses.append(letter)
